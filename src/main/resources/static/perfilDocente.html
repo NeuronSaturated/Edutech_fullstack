@@ -1,0 +1,54 @@
+<!DOCTYPE html> <!-- Declaración de tipo de documento HTML5 -->
+<html lang="es"> <!-- Indica que el idioma principal es español -->
+
+<head>
+  <meta charset="UTF-8" /> <!-- Codificación de caracteres en UTF-8 -->
+  <title>Perfil Docente - EduTech</title> <!-- Título de la pestaña del navegador -->
+
+  <!-- Enlace al archivo de estilos CSS externo -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Configuración del viewport para diseño responsive en móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+
+  <!-- Menú de usuario fijo en la esquina superior derecha (oculto inicialmente) -->
+  <div id="welcomeMenu" class="welcome-menu" style="display:none;">
+    <!-- Botón para desplegar el menú -->
+    <button id="toggleMenuBtn" class="menu-btn" type="button">
+      <span id="nombreUsuario" class="nombre-usuario">Docente</span> <!-- Nombre visible en el botón -->
+      
+      <!-- Ícono de flecha (indica que el botón despliega algo) -->
+      <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    <!-- Contenido del menú desplegable -->
+    <div id="welcomeContent" class="welcome-content">
+      <ul class="menu-list">
+        <!-- Opciones del menú -->
+        <li><a href="#" id="misCursos">Mis Cursos</a></li>
+        <li><a href="#" id="evaluarAlumnos">Evaluar Alumnos</a></li>
+        <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Contenedor central principal -->
+  <div class="container" style="max-width: 700px; margin: 80px auto 40px;">
+    <!-- Título de bienvenida con nombre dinámico del docente -->
+    <h2>Bienvenido, <span id="nombreDocente"></span></h2>
+
+    <!-- Área donde se cargan dinámicamente los cursos del docente u otras funcionalidades -->
+    <div id="contenidoPrincipal">
+      <!-- Aquí cargamos cursos o formularios desde JS -->
+    </div>
+  </div>
+
+  <!-- Script que contiene la lógica del perfil del docente -->
+  <script src="js/perfilDocente.js"></script>
+</body>
+</html>

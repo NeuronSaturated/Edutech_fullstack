@@ -1,0 +1,225 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>  <!-- Define el proyecto padre del cual hereda configuración -->
+        <groupId>org.springframework.boot</groupId>  <!-- Grupo del proyecto padre -->
+        <artifactId>spring-boot-starter-parent</artifactId>  <!-- Nombre del proyecto padre -->
+        <version>3.5.0</version>  <!-- Versión del proyecto padre (Spring Boot 3.5.0) -->
+        <relativePath/>  <!-- No buscar el POM padre en rutas relativas -->
+    </parent>
+
+    <!-- ——————————— [Project Information ——————————— -->
+    <groupId>com.edutech</groupId>  <!-- Grupo del proyecto actual -->
+    <artifactId>Edutech</artifactId>  <!-- Nombre del artefacto (proyecto) -->
+    <version>0.0.1-SNAPSHOT</version>  <!-- Versión del proyecto actual -->
+    <name>Edutech</name>  <!-- Nombre legible del proyecto -->
+    <description>
+        API REST para la gestión de cursos, estudiantes, inscripciones y evaluaciones en la plataforma EduTech
+    </description>  <!-- Descripción del proyecto -->
+    <url>https://github.com/xXNovaX/Edutech_.git</url><!-- URL propia en “About” -->
+
+    <organization>
+        <name>Duoc UC</name>
+        <url>https://www.duoc.cl</url>
+    </organization>
+
+    <!-- ——————————— [Project Team] ——————————— -->
+    <developers>
+        <developer>
+            <id>cfilun</id>
+            <name>Cristóbal Filún</name>
+            <email>cristobal.filun@duoc.cl</email>
+            <organization>Duoc UC</organization>
+            <organizationUrl>https://www.duoc.cl</organizationUrl>
+        </developer>
+        <developer>
+            <id>bcontreras</id>
+            <name>Benjamín Contreras</name>
+            <email>benjamin.contreras@duoc.cl</email>
+            <organization>Duoc UC</organization>
+            <organizationUrl>https://www.duoc.cl</organizationUrl>
+        </developer>
+        <developer>
+            <id>mramirez</id>
+            <name>Martín Ramírez</name>
+            <email>martin.ramirez@duoc.cl</email>
+            <organization>Duoc UC</organization>
+            <organizationUrl>https://www.duoc.cl</organizationUrl>
+        </developer>
+    </developers>
+
+
+    <properties>  <!-- Definición de propiedades para el proyecto -->
+        <java.version>21</java.version>  <!-- Define la versión de Java para compilar -->
+    </properties>
+
+
+    <dependencies>  <!-- Inicio de la lista de dependencias -->
+
+        <dependency>  <!-- Dependencia para usar JPA (persistencia de datos) -->
+            <groupId>org.springframework.boot</groupId>  <!-- Grupo de la dependencia -->
+            <artifactId>spring-boot-starter-data-jpa</artifactId>  <!-- Artefacto de JPA para Spring Boot -->
+        </dependency>
+
+        <dependency>  <!-- Dependencia para seguridad con Spring Security -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>  <!-- Dependencia para construir aplicaciones web REST con Spring MVC -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>  <!-- Base de datos en memoria para pruebas (H2) -->
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>  <!-- Solo se usa en tiempo de ejecución -->
+        </dependency>
+
+        <dependency>  <!-- Conector JDBC para MySQL -->
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>  <!-- Solo se usa en tiempo de ejecución -->
+        </dependency>
+
+        <dependency>  <!-- Herramienta para recarga automática durante desarrollo -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>  <!-- Solo en tiempo de ejecución -->
+            <optional>true</optional>  <!-- Opcional para no incluir en empaquetado final -->
+        </dependency>
+
+        <dependency>  <!-- Lombok, para reducir código repetitivo -->
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>  <!-- Opcional para no empaquetar -->
+        </dependency>
+
+        <dependency>  <!-- Dependencia para pruebas unitarias y de integración en Spring Boot -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>  <!-- Solo para pruebas -->
+        </dependency>
+
+        <dependency>  <!-- Soporte para pruebas específicas de Spring Security -->
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>  <!-- Solo para pruebas -->
+        </dependency>
+
+        <dependency>  <!-- Soporte para HATEOAS (hipervínculos en REST APIs) -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-hateoas</artifactId>
+        </dependency>
+
+        <!-- 1) Starter de validación (trae Hibernate Validator) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+
+
+        <!-- Springdoc OpenAPI + Swagger UI compatible con Spring Boot 3.5.x -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.8.9</version>
+        </dependency>
+
+
+    </dependencies>  <!-- Fin de dependencias -->
+
+
+    <build>  <!-- Configuración del proceso de construcción -->
+        <plugins>  <!-- Plugins para ampliar las funcionalidades de Maven -->
+
+            <plugin>  <!-- Plugin para compilar el código -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>  <!-- Versión compatible con Java 21 -->
+                <configuration>  <!-- Configuración del plugin -->
+                    <source>${java.version}</source>  <!-- Versión Java de código fuente -->
+                    <target>${java.version}</target>  <!-- Versión Java de bytecode generado -->
+                </configuration>
+            </plugin>
+
+            <plugin>  <!-- Plugin para empaquetar la aplicación Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>  <!-- Configuración del plugin -->
+                    <excludes>  <!-- Excluir dependencias específicas del empaquetado -->
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            
+            <!-- —[TEST REPORT]— Plugin para ejecutar tus pruebas unitarias e informar resultados -->
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <!-- Configuración del plugin:
+                outputDirectory: carpeta donde se generará el reporte HTML -->
+                <configuration>
+                    <outputDirectory>${project.build.directory}/surefire-reports-html</outputDirectory>
+                </configuration>
+            </plugin>
+
+            <!-- [CODE COVERAGE]— Plugin JaCoCo para medir cobertura  -->
+            <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.10</version>
+            <executions>
+                <!-- Instrumentar antes de los tests -->
+                <execution>
+                <id>prepare-agent</id>
+                <goals>
+                    <goal>prepare-agent</goal>
+                </goals>
+                </execution>
+                <!-- Generar el reporte al final del ciclo -->
+                <execution>
+                <id>report</id>
+                <phase>verify</phase>
+                <goals>
+                    <goal>report</goal>
+                </goals>
+                </execution>
+            </executions>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+
+    <!-- [SITE GENERATION]— Reportes unificados en target/site  -->
+    <reporting>
+        <plugins>
+
+            <!-- 1) Informe de tests (Surefire) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>3.0.0-M5</version>
+            </plugin>
+
+            <!-- 2) Informe de cobertura (JaCoCo) -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.10</version>
+            </plugin>
+
+            <!-- Aquí podrías añadir más: javadoc, PMD, Checkstyle… -->
+        </plugins>
+    </reporting>
+
+</project>

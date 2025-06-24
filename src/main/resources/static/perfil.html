@@ -1,0 +1,130 @@
+<!DOCTYPE html> <!-- Define el documento como HTML5 -->
+<html lang="es"> <!-- Lenguaje principal del documento: español -->
+
+<head>
+  <meta charset="UTF-8" /> <!-- Codificación de caracteres en UTF-8 -->
+  <title>Perfil de Estudiante - EduTech</title> <!-- Título de la pestaña del navegador -->
+
+  <!-- Enlace a hoja de estilos externa -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Viewport para responsive design en móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Estilos internos (para el menú y botones) -->
+  <style>
+    /* Estilos del contenedor del menú en la esquina superior derecha */
+    .welcome-menu {
+      position: fixed; /* Fijo en la pantalla */
+      top: 10px;
+      right: 10px;
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      z-index: 1000;
+      width: 200px;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Botón del menú (con ícono de flecha) */
+    .menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      font-size: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Contenido que se muestra/oculta al hacer click en el botón */
+    .welcome-content {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .welcome-content.show {
+      display: block; /* Se muestra al hacer toggle */
+    }
+
+    /* Lista del menú lateral */
+    .menu-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-list li {
+      margin: 8px 0;
+    }
+
+    .menu-list li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .menu-list li a:hover {
+      color: #007BFF; /* Azul al pasar el mouse */
+    }
+
+    /* Estilo de botón de inscripción a cursos */
+    button.btnInscribir {
+      margin-left: 15px;
+      padding: 3px 8px;
+      cursor: pointer;
+      background-color: #007BFF;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    /* Estilo cuando el botón está desactivado */
+    button.btnInscribir:disabled {
+      background-color: #888;
+      cursor: default;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Contenedor del menú de usuario (inicialmente oculto) -->
+  <div id="welcomeMenu" class="welcome-menu" style="display:none;">
+    <button id="toggleMenuBtn" class="menu-btn" type="button">
+      <span id="nombreUsuario" class="nombre-usuario">Usuario</span> <!-- Nombre del estudiante -->
+
+      <!-- Ícono de flecha desplegable -->
+      <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    <!-- Lista del menú lateral que se despliega -->
+    <div id="welcomeContent" class="welcome-content">
+      <ul class="menu-list">
+        <li><a href="#" id="inscripcionCursos">Cursos disponibles</a></li>
+        <li><a href="#" id="misCursosInscritos">Mis cursos inscritos</a></li>
+        <li><a href="#" id="gestionarCuenta">Gestionar cuenta</a></li>
+        <li><a href="#" id="evaluaciones">Evaluaciones</a></li>
+        <li><a href="#" id="cerrarSesion">Cerrar sesión</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Contenedor principal donde se cargan los contenidos dinámicos -->
+  <div class="container" style="padding: 40px 20px; max-width: 700px; margin: auto;">
+    <h2 id="tituloSeccion">Cursos disponibles para inscripción</h2> <!-- Título dinámico según sección -->
+    
+    <!-- Aquí se insertan los cursos u otros contenidos desde JS -->
+    <div id="cursosDisponibles" style="font-size: 1.1rem; margin-top: 20px;"></div>
+  </div>
+
+  <!-- Script que contiene la lógica JS del perfil de estudiante -->
+  <script src="js/perfil.js"></script>
+</body>
+</html>

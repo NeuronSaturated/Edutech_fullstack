@@ -1,0 +1,94 @@
+<!DOCTYPE html> <!-- Define que el documento es HTML5 -->
+<html lang="es"> <!-- Indica que el idioma del contenido es español -->
+<head>
+  <meta charset="UTF-8"> <!-- Codificación de caracteres -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Adaptación a dispositivos móviles -->
+  <title>Crear Docente</title> <!-- Título que se muestra en la pestaña del navegador -->
+  <link rel="stylesheet" href="css/styles.css"> <!-- Enlace al archivo de estilos -->
+</head>
+<body>
+  <div class="container"> <!-- Contenedor principal -->
+    <h2>Registrar Docente (Solo Administradores)</h2> <!-- Título del formulario -->
+    
+    <!-- Formulario para crear un nuevo docente -->
+    <form id="formCrearDocente">
+      <!-- Campo: Nombre del docente -->
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre" required>
+
+      <!-- Campo: Correo electrónico del docente -->
+      <label for="correo">Correo:</label>
+      <input type="email" id="correo" name="correo" required>
+
+      <!-- Campo: Contraseña -->
+      <label for="password">Contraseña:</label>
+      <input type="password" id="password" name="password" required>
+
+      <!-- Campo: Dirección del docente -->
+      <label for="direccion">Dirección:</label>
+      <input type="text" id="direccion" name="direccion">
+
+      <!-- Campo: Carrera del docente -->
+      <label for="carrera">Carrera:</label>
+      <input type="text" id="carrera" name="carrera">
+
+      <!-- Campo: Correo del administrador que autoriza el registro -->
+      <label for="adminCorreo">Correo del Administrador:</label>
+      <input type="email" id="adminCorreo" name="adminCorreo" required>
+
+      <!-- Botón para enviar el formulario -->
+      <button type="submit" class="btn-primary">Crear Docente</button>
+
+      <!-- Párrafo donde se mostrará el mensaje de éxito o error -->
+      <p id="mensaje"></p>
+    </form>
+  </div>
+
+  <script>
+    // Agrega un listener al formulario para manejar el evento submit
+    document.getElementById('formCrearDocente').addEventListener('submit', async function(e) {
+      e.preventDefault(); // Previene el envío tradicional del formulario
+
+      // Objeto con los datos del nuevo docente
+      const docente = {
+        nombre: document.getElementById('nombre').value,
+        correo: document.getElementById('correo').value,
+        password: document.getElementById('password').value,
+        direccion: document.getElementById('direccion').value,
+        carrera: document.getElementById('carrera').value
+      };
+
+      // Se obtiene el correo del administrador que autoriza el registro
+      const adminCorreo = document.getElementById('adminCorreo').value;
+
+      try {
+        // Se realiza la petición POST al backend con los datos del docente
+        const response = await fetch(`http://localhost:8080/api/estudiantes/crear-docente?adminCorreo=${encodeURIComponent(adminCorreo)}`, {
+          method: 'POST', // Método HTTP
+          headers: {
+            'Content-Type': 'application/json' // Indica que se enviará un JSON
+          },
+          body: JSON.stringify(docente) // Convierte el objeto 'docente' en cadena JSON
+        });
+
+        const mensaje = document.getElementById('mensaje'); // Elemento donde se muestra el resultado
+
+        if (response.ok) {
+          // Si el servidor responde con éxito
+          mensaje.textContent = 'Docente creado exitosamente';
+          mensaje.style.color = 'green';
+        } else {
+          // Si hubo un error en la respuesta del servidor
+          const error = await response.text(); // Obtiene mensaje del backend
+          mensaje.textContent = 'Error: ' + error;
+          mensaje.style.color = 'red';
+        }
+      } catch (err) {
+        // Si falla la conexión o ocurre un error en la solicitud
+        document.getElementById('mensaje').textContent = 'Error de conexión';
+        document.getElementById('mensaje').style.color = 'red';
+      }
+    });
+  </script>
+</body>
+</html>

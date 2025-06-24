@@ -1,0 +1,431 @@
+/* Reset general: elimina márgenes y paddings por defecto y establece box-sizing para incluir padding y borde dentro del ancho y alto */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para el body: fuente, fondo con degradado, altura completa de la ventana, y centrado del contenido */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuentes seguras para web */
+  background: linear-gradient(135deg, #4c8bf5, #67e8f9); /* Degradado diagonal azul */
+  height: 100vh; /* Altura completa de la ventana del navegador */
+  display: flex; /* Usamos flexbox para centrar */
+  justify-content: center; /* Centrado horizontal */
+  align-items: center; /* Centrado vertical */
+  color: #fff; /* Color de texto blanco */
+}
+
+/* Contenedor principal del login */
+.login-container {
+  background: white; /* Fondo blanco para el contenedor */
+  color: #333; /* Color de texto oscuro */
+  width: 900px; /* Ancho fijo */
+  max-width: 95vw; /* Máximo ancho relativo al viewport (95%) para responsividad */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3); /* Sombra suave alrededor */
+  display: flex; /* Flexbox para dividir en secciones */
+  overflow: hidden; /* Para que el contenido no sobresalga de los bordes redondeados */
+}
+
+/* Sección bienvenida dentro del login */
+.welcome-section {
+  background: linear-gradient(135deg, #4c8bf5, #67e8f9); /* Degradado azul */
+  color: white; /* Texto blanco */
+  flex: 1; /* Ocupa mitad del contenedor flex */
+  padding: 50px 40px; /* Espaciado interno */
+  display: flex; /* Flex para centrar contenido */
+  flex-direction: column; /* Elementos en columna */
+  justify-content: center; /* Centrado vertical */
+  align-items: center; /* Centrado horizontal */
+  text-align: center; /* Texto centrado */
+}
+
+/* Título principal en bienvenida */
+.welcome-section h1 {
+  font-size: 2.8rem; /* Tamaño grande */
+  margin-bottom: 10px; /* Espacio inferior */
+}
+
+/* Párrafo en bienvenida */
+.welcome-section p {
+  font-size: 1.2rem; /* Tamaño de texto mediano */
+  margin-bottom: 30px; /* Espacio inferior */
+  font-weight: 500; /* Peso medio */
+  opacity: 0.85; /* Ligera transparencia para suavizar texto */
+}
+
+/* Imagen en la sección bienvenida */
+.welcome-img {
+  width: 70%; /* 70% del contenedor */
+  max-width: 250px; /* Máximo 250px */
+  user-select: none; /* No permite seleccionar la imagen */
+  pointer-events: none; /* No responde a eventos de mouse */
+}
+
+/* Sección del formulario de login */
+.form-section {
+  flex: 1; /* Ocupa la otra mitad del contenedor flex */
+  padding: 50px 40px; /* Espaciado interno */
+  background: #f9f9fb; /* Fondo muy claro */
+  display: flex; /* Flexbox para centrar contenido */
+  flex-direction: column; /* Elementos en columna */
+  justify-content: center; /* Centrado vertical */
+}
+
+/* Título del formulario */
+.form-login h2 {
+  font-size: 2rem; /* Tamaño grande */
+  margin-bottom: 30px; /* Espacio inferior */
+  color: #1a1a1a; /* Texto muy oscuro */
+}
+
+/* Etiquetas de los inputs */
+.form-login label {
+  font-weight: 600; /* Negrita */
+  margin-bottom: 6px; /* Espacio inferior pequeño */
+  display: block; /* Ocupa toda la línea */
+  color: #444; /* Gris oscuro */
+}
+
+/* Inputs para email y contraseña */
+.form-login input[type="email"],
+.form-login input[type="password"] {
+  width: 100%; /* Ancho completo del contenedor */
+  padding: 14px 16px; /* Espacio interno amplio */
+  font-size: 1rem; /* Tamaño legible */
+  margin-bottom: 20px; /* Espacio entre inputs */
+  border-radius: 12px; /* Bordes redondeados */
+  border: 2px solid #ddd; /* Borde gris claro */
+  transition: border-color 0.3s; /* Transición suave para cambio de borde */
+}
+
+/* Estilo al enfocar inputs */
+.form-login input[type="email"]:focus,
+.form-login input[type="password"]:focus {
+  border-color: #4c8bf5; /* Borde azul al enfocar */
+  outline: none; /* Quita el borde por defecto del navegador */
+}
+/*--------------------------------------------------------*/
+
+/* Botón principal estilizado */
+.btn-primary {
+  background: #4c8bf5; /* Fondo azul */
+  color: white; /* Texto blanco */
+  font-weight: 700; /* Negrita */
+  font-size: 1.1rem; /* Tamaño de fuente */
+  border: none; /* Sin borde */
+  padding: 15px 0; /* Espaciado vertical */
+  border-radius: 12px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor puntero al pasar mouse */
+  box-shadow: 0 8px 20px rgba(76,139,245,0.6); /* Sombra azul suave */
+  transition: background 0.3s ease; /* Transición suave para cambio de fondo */
+}
+
+/* Efecto hover para botón principal */
+.btn-primary:hover {
+  background: #3a6dcc; /* Fondo azul más oscuro */
+  box-shadow: 0 12px 30px rgba(58,109,204,0.7); /* Sombra más intensa y grande */
+}
+
+/* Mensaje de error o info en login */
+.mensaje-login {
+  margin-top: 12px; /* Espacio superior */
+  font-weight: 700; /* Negrita */
+  font-size: 0.9rem; /* Tamaño un poco pequeño */
+  text-align: center; /* Centrado de texto */
+  min-height: 24px; /* Altura mínima para evitar salto de contenido */
+  color: red; /* Texto rojo (para errores) */
+}
+
+/* Contenedor general para perfil de usuario */
+.container {
+  max-width: 700px; /* Ancho máximo */
+  margin: 60px auto 40px; /* Margen vertical: 60px arriba, 40px abajo; centrado horizontal */
+  padding: 20px; /* Espaciado interno */
+  background: white; /* Fondo blanco */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2); /* Sombra suave */
+  color: #333; /* Color texto oscuro */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuentes legibles */
+}
+
+/* Párrafos dentro de la sección perfilInfo */
+#perfilInfo p {
+  font-size: 1.1rem; /* Tamaño de texto legible */
+  margin-bottom: 10px; /* Separación inferior */
+}
+
+/* Botón para cerrar sesión en perfil */
+#btnCerrarSesion {
+  margin-top: 30px; /* Espacio arriba */
+  background: #4c8bf5; /* Fondo azul */
+  color: white; /* Texto blanco */
+  padding: 12px 25px; /* Espaciado interno */
+  font-weight: 700; /* Negrita */
+  font-size: 1rem; /* Tamaño de fuente */
+  border: none; /* Sin borde */
+  border-radius: 12px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor puntero */
+  box-shadow: 0 8px 20px rgba(76,139,245,0.6); /* Sombra azul */
+  transition: background 0.3s ease; /* Transición de fondo suave */
+}
+
+/* Hover para botón cerrar sesión */
+#btnCerrarSesion:hover {
+  background: #3a6dcc; /* Azul más oscuro */
+  box-shadow: 0 12px 30px rgba(58,109,204,0.7); /* Sombra más intensa */
+}
+
+/* Menú de usuario moderno fijo en la esquina superior derecha */
+.welcome-menu {
+  position: fixed; /* Fijo en pantalla */
+  top: 20px; /* 20px desde arriba */
+  right: 20px; /* 20px desde la derecha */
+  z-index: 1500; /* Sobre otros elementos */
+  user-select: none; /* No permite selección de texto */
+  display: flex; /* Flexbox para organizar elementos */
+  flex-direction: column; /* Apilar verticalmente */
+  align-items: flex-end; /* Alineación a la derecha */
+}
+
+/* Botón del menú */
+.menu-btn {
+  background-color: #fff; /* Fondo blanco */
+  border: 2px solid #4c8bf5; /* Borde azul */
+  color: #4c8bf5; /* Texto azul */
+  padding: 10px 20px; /* Espaciado interno */
+  font-weight: 700; /* Negrita */
+  font-size: 15px; /* Tamaño de fuente */
+  border-radius: 30px; /* Bordes muy redondeados (píldora) */
+  cursor: pointer; /* Cursor puntero */
+  display: flex; /* Flexbox para alinear iconos y texto */
+  align-items: center; /* Centrado vertical */
+  gap: 8px; /* Espacio entre iconos y texto */
+  transition: background-color 0.3s, color 0.3s; /* Transiciones para colores */
+  box-shadow: 0 2px 6px rgba(76,139,245,0.3); /* Sombra suave */
+}
+
+/* Hover para botón menú */
+.menu-btn:hover {
+  background-color: #4c8bf5; /* Fondo azul */
+  color: white; /* Texto blanco */
+  box-shadow: 0 4px 12px rgba(76,139,245,0.6); /* Sombra más fuerte */
+}
+
+/* Nombre de usuario en menú */
+.nombre-usuario {
+  max-width: 130px; /* Ancho máximo para no romper diseño */
+  white-space: nowrap; /* No permite salto de línea */
+  overflow: hidden; /* Oculta contenido que se desborda */
+  text-overflow: ellipsis; /* Muestra "..." si el texto es muy largo */
+}
+
+/* Flecha dentro del botón del menú */
+.menu-btn .arrow {
+  transition: transform 0.3s ease; /* Transición para rotar */
+}
+
+/* Flecha rotada 180 grados cuando el menú está activo */
+.menu-btn.active .arrow {
+  transform: rotate(180deg);
+}
+
+/* Contenedor del contenido desplegable del menú */
+#welcomeContent {
+  background-color: white; /* Fondo blanco */
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); /* Sombra suave */
+  margin-top: 10px; /* Margen superior para separarlo del botón */
+  min-width: 220px; /* Ancho mínimo */
+  overflow: hidden; /* Oculta contenido que sobresalga */
+  opacity: 0; /* Invisible por defecto */
+  visibility: hidden; /* No interactuable por defecto */
+  transform: translateY(-10px); /* Leve desplazamiento hacia arriba para animación */
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s; /* Animación suave */
+  position: absolute; /* Posicionamiento absoluto respecto al botón */
+  right: 0; /* Alineado a la derecha */
+  top: 55px; /* Separado hacia abajo del botón */
+  z-index: 1600; /* Más arriba que otros elementos */
+}
+
+/* Mostrar contenido del menú cuando tiene clase show */
+#welcomeContent.show {
+  opacity: 1; /* Visible */
+  visibility: visible; /* Interactuable */
+  transform: translateY(0); /* Sin desplazamiento */
+}
+
+/* Lista del menú */
+.menu-list {
+  list-style: none; /* Sin viñetas */
+  margin: 0; /* Sin margen */
+  padding: 0; /* Sin padding */
+}
+
+/* Elementos de la lista */
+.menu-list li {
+  border-bottom: 1px solid #eee; /* Línea separadora */
+}
+
+/* Último elemento sin línea */
+.menu-list li:last-child {
+  border-bottom: none;
+}
+
+/* Enlaces del menú */
+.menu-list li a {
+  display: block; /* Ocupa todo el ancho */
+  padding: 12px 20px; /* Espaciado interno */
+  font-weight: 600; /* Negrita media */
+  color: #444; /* Texto gris oscuro */
+  text-decoration: none; /* Sin subrayado */
+  transition: background-color 0.2s; /* Transición para el fondo */
+}
+
+/* Hover sobre enlaces del menú */
+.menu-list li a:hover {
+  background-color: #4c8bf5; /* Fondo azul */
+  color: white; /* Texto blanco */
+}
+/*---------------------------------------------------------------------------------*/
+
+/* Responsive: ajustes para pantallas de máximo 750px de ancho */
+@media (max-width: 750px) {
+  /* Contenedor principal del login pasa a columna para dispositivos móviles */
+  .login-container {
+    flex-direction: column; /* Apila las secciones verticalmente */
+    width: 95vw; /* Ancho relativo al viewport para mejor adaptabilidad */
+  }
+
+  /* Menos padding en secciones de bienvenida y formulario para pantallas pequeñas */
+  .welcome-section,
+  .form-section {
+    padding: 30px 20px;
+  }
+
+  /* Imagen de bienvenida reduce tamaño al 50% */
+  .welcome-img {
+    width: 50%;
+  }
+}
+
+/* Estilos para las tarjetas de cursos */
+.curso-card {
+  background: #f9f9fb; /* Fondo claro */
+  color: #333; /* Texto oscuro */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2); /* Sombra suave */
+  padding: 20px; /* Espacio interno */
+  margin-bottom: 20px; /* Separación inferior entre tarjetas */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente legible */
+  transition: box-shadow 0.3s ease; /* Transición suave para sombra */
+}
+
+/* Sombra más intensa al pasar mouse sobre la tarjeta */
+.curso-card:hover {
+  box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+}
+
+/* Título dentro de la tarjeta de curso */
+.curso-card h4 {
+  margin-top: 0; /* Sin margen superior para que quede pegado arriba */
+  font-weight: 700; /* Negrita */
+  color: #4c8bf5; /* Azul */
+}
+
+/* Párrafo descriptivo dentro de la tarjeta */
+.curso-card p {
+  margin: 12px 0 20px; /* Margen vertical */
+  font-size: 1rem; /* Tamaño legible */
+  line-height: 1.4; /* Espaciado entre líneas */
+  color: #666; /* Gris medio */
+}
+
+/* Botón dentro de la tarjeta */
+.curso-card button {
+  background-color: #4c8bf5; /* Azul */
+  color: white; /* Texto blanco */
+  font-weight: 700; /* Negrita */
+  border: none; /* Sin borde */
+  padding: 12px 25px; /* Espaciado interno */
+  border-radius: 12px; /* Bordes redondeados */
+  cursor: pointer; /* Cursor puntero */
+  box-shadow: 0 8px 20px rgba(76,139,245,0.6); /* Sombra azul */
+  font-size: 1rem; /* Tamaño de fuente */
+  transition: background 0.3s ease; /* Transición suave para el fondo */
+}
+
+/* Hover para botón dentro de tarjeta */
+.curso-card button:hover {
+  background-color: #3a6dcc; /* Azul más oscuro */
+  box-shadow: 0 12px 30px rgba(58,109,204,0.7); /* Sombra más intensa */
+}
+
+/* Ajustes responsive para tarjetas y botones en pantallas pequeñas */
+@media (max-width: 750px) {
+  .curso-card {
+    padding: 15px; /* Menos padding */
+  }
+
+  .curso-card button {
+    width: 100%; /* Botón ocupa todo el ancho */
+  }
+}
+
+/* Botón para eliminar cursos */
+button.btnEliminar {
+  background-color: #e74c3c; /* Rojo fuerte */
+  color: white; /* Texto blanco */
+  border: none; /* Sin borde */
+  padding: 6px 12px; /* Espaciado interno pequeño */
+  margin-left: 12px; /* Separación a la izquierda */
+  cursor: pointer; /* Cursor puntero */
+  border-radius: 8px; /* Bordes redondeados */
+  font-weight: 700; /* Negrita */
+  font-size: 0.9rem; /* Tamaño un poco pequeño */
+  box-shadow: 0 6px 15px rgba(231, 76, 60, 0.6); /* Sombra roja */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+/* Hover para botón eliminar */
+button.btnEliminar:hover {
+  background-color: #c0392b; /* Rojo más oscuro */
+  box-shadow: 0 8px 20px rgba(192, 57, 43, 0.8); /* Sombra más fuerte */
+}
+
+/* Contenedor más ancho para formulario de creación */
+.formulario-grande {
+  width: 100; /* Parece faltar unidad, debería ser 100% */
+  max-width: 850px; /* Ancho máximo */
+  margin: 0 auto; /* Centrado horizontal */
+  padding: 20px; /* Espaciado interno */
+  background: white; /* Fondo blanco */
+  border-radius: 20px; /* Bordes redondeados */
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2); /* Sombra */
+  color: #333; /* Texto oscuro */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente legible */
+}
+
+/* NOTA: El bloque de button.btnEliminar está repetido, puedes eliminar la segunda instancia */
+
+/* Repetición del botón eliminar cursos - puedes eliminarlo para evitar redundancia */
+button.btnEliminar {
+  background-color: #e74c3c; /* rojo fuerte */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-left: 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  box-shadow: 0 6px 15px rgba(231, 76, 60, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button.btnEliminar:hover {
+  background-color: #c0392b; /* rojo más oscuro */
+  box-shadow: 0 8px 20px rgba(192, 57, 43, 0.8);
+}
+

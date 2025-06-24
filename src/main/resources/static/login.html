@@ -1,0 +1,53 @@
+<!DOCTYPE html> <!-- Define que este documento es HTML5 -->
+<html lang="es"> <!-- Indica que el contenido está en español -->
+
+<head>
+  <meta charset="UTF-8" /> <!-- Define la codificación de caracteres como UTF-8 -->
+  <title>Bienvenido a EduTech</title> <!-- Título que aparecerá en la pestaña del navegador -->
+
+  <!-- Enlace al archivo de estilos CSS externo -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Configuración para que la página sea responsive en dispositivos móviles -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <!-- Contenedor general que agrupa la sección de bienvenida y el formulario -->
+  <div class="login-container">
+
+    <!-- Sección visual de bienvenida -->
+    <div class="welcome-section">
+      <h1>¡Bienvenidos a EduTech!</h1> <!-- Título principal de la página -->
+      <p>Por favor, inicie sesión para continuar.</p> <!-- Mensaje de indicación -->
+
+      <!-- Imagen ilustrativa -->
+      <img src="img/elerning.png" alt="Ilustración educativa" class="welcome-img" />
+    </div>
+
+    <!-- Sección del formulario de login -->
+    <div class="form-section">
+      <form id="loginForm" class="form-login"> <!-- Formulario de inicio de sesión -->
+        <h2>Iniciar Sesión</h2> <!-- Título del formulario -->
+
+        <!-- Campo para el correo electrónico -->
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required />
+
+        <!-- Campo para la contraseña -->
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" placeholder="Tu contraseña" required />
+
+        <!-- Botón para enviar el formulario -->
+        <button type="submit" class="btn-primary">Ingresar</button>
+
+        <!-- Contenedor para mostrar mensajes de error o éxito -->
+        <div id="mensajeLogin" class="mensaje-login"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Archivo JavaScript que maneja la lógica del login -->
+  <script src="js/login.js"></script>
+</body>
+</html>
