@@ -1,9 +1,12 @@
 package com.edutech.Edutech.controller;
 
+import com.edutech.Edutech.model.Curso;
+import com.edutech.Edutech.model.Estudiante;
 import com.edutech.Edutech.model.Inscripcion;
 import com.edutech.Edutech.service.CursoService;
 import com.edutech.Edutech.service.EstudianteService;
 import com.edutech.Edutech.service.InscripcionService;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,44 +36,65 @@ class InscripcionControllerHateoasTest {
     private MockMvc mvc;
 
     @MockBean
-    private InscripcionService inscripcionService;
-
+    private InscripcionService insService;
     @MockBean
-    private CursoService cursoService;           
+    private EstudianteService estudianteService;
     @MockBean
-    private EstudianteService estudianteService; 
+    private CursoService cursoService;
 
     @Test
     @DisplayName("GET /api/inscripciones/hateoas → colección HATEOAS")
-    void listaHateoas() throws Exception {
-        Inscripcion i1 = new Inscripcion(); i1.setId(1L); i1.setFechaInscripcion(LocalDate.of(2025,1,1));
-        Inscripcion i2 = new Inscripcion(); i2.setId(2L); i2.setFechaInscripcion(LocalDate.of(2025,2,2));
+    void listInscripcionesHateoas() throws Exception {
+        // — datos de ejemplo
+        Estudiante e = new Estudiante(); e.setId(1L); e.setNombre("X");
+        Curso      c = new Curso();      c.setId(2L); c.setNombre("Y");
+        Inscripcion i1 = new Inscripcion();
+        i1.setId(10L); i1.setEstudiante(e); i1.setCurso(c); i1.setFechaInscripcion(LocalDate.now());
+        Inscripcion i2 = new Inscripcion();
+        i2.setId(11L); i2.setEstudiante(e); i2.setCurso(c); i2.setFechaInscripcion(LocalDate.now());
+        given(insService.listarTodos()).willReturn(List.of(i1, i2));
 
-        given(inscripcionService.listarTodos()).willReturn(List.of(i1,i2));
-
-        mvc.perform(get("/api/inscripciones/hateoas").accept(MediaTypes.HAL_JSON))
+        mvc.perform(get("/api/inscripciones/hateoas")
+                .accept(MediaTypes.HAL_JSON))
            .andExpect(status().isOk())
-           .andExpect(content().contentType("application/hal+json"))
-           // el rel por defecto será "inscripcionList" (clase Inscripcion → nombre minuscula + List)
-           .andExpect(jsonPath("_embedded.inscripcionList[0].id").value(1))
-           .andExpect(jsonPath("_links.self.href").exists());
+           .andExpect(content().contentType(MediaTypes.HAL_JSON))
+           .andExpect(jsonPath("_embedded.inscripcionList[0].id").value(10))
+           .andExpect(jsonPath("_embedded.inscripcionList[1].id").value(11))
+           // ahora esperamos sólo el path
+           .andExpect(jsonPath("_links.self.href")
+               .value(linkTo(InscripcionController.class)
+                   .slash("hateoas")
+                   .toUri()
+                   .getPath()));
     }
 
     @Test
     @DisplayName("GET /api/inscripciones/{id}/hateoas → recurso HATEOAS individual")
-    void porIdHateoas() throws Exception {
+    void getInscripcionByIdHateoas() throws Exception {
+        // — datos de ejemplo
+        Estudiante e = new Estudiante(); e.setId(5L); e.setNombre("A");
+        Curso      c = new Curso();      c.setId(6L); c.setNombre("B");
         Inscripcion i = new Inscripcion();
-        i.setId(5L);
-        i.setFechaInscripcion(LocalDate.of(2025,5,5));
+        i.setId(20L); i.setEstudiante(e); i.setCurso(c); i.setFechaInscripcion(LocalDate.now());
+        given(insService.buscarPorId(20L)).willReturn(Optional.of(i));
 
-        given(inscripcionService.buscarPorId(5L)).willReturn(Optional.of(i));
-
-        mvc.perform(get("/api/inscripciones/5/hateoas").accept(MediaTypes.HAL_JSON))
+        mvc.perform(get("/api/inscripciones/20/hateoas")
+                .accept(MediaTypes.HAL_JSON))
            .andExpect(status().isOk())
-           .andExpect(content().contentType("application/hal+json"))
-           .andExpect(jsonPath("id").value(5))
+           .andExpect(content().contentType(MediaTypes.HAL_JSON))
+           .andExpect(jsonPath("id").value(20))
+           // self → path sólo
            .andExpect(jsonPath("_links.self.href")
-                   .value(linkTo(InscripcionController.class).slash(5).toUri().toString()))
-           .andExpect(jsonPath("_links.todas-las-inscripciones.href").exists());
+               .value(linkTo(InscripcionController.class)
+                   .slash(20)
+                   .slash("hateoas")
+                   .toUri()
+                   .getPath()))
+           // enlace a todas-las-inscripciones → también sólo path
+           .andExpect(jsonPath("_links.todas-las-inscripciones.href")
+               .value(linkTo(InscripcionController.class)
+                   .slash("hateoas")
+                   .toUri()
+                   .getPath()));
     }
 }
