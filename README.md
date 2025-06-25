@@ -130,6 +130,8 @@ mvn spring-boot:run
 - Swagger UI: ```http://localhost:8080/swagger-ui.html```
 - Especificación JSON: ```http://localhost:8080/v3/api-docs```
 
+3. Carpeta de capturas de las pruebas: https://drive.google.com/drive/folders/1p1mHlkbmlZqhTQfPotjYl2LOsgleFC6G?usp=sharing
+
 ---
 
 ## Pruebas unitarias y cobertura
