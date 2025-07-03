@@ -67,7 +67,7 @@ open target/site/index.html
 ├── src
 │   ├── main
 │   │   ├── java/com/edutech/Edutech
-│   │   │   ├── config           # Configuraciones (Swagger, CORS, seguridad…)
+│   │   │   ├── config           # Configuraciones 
 │   │   │   ├── controller       # Controladores REST
 │   │   │   ├── dto              # Data Transfer Objects
 │   │   │   ├── model            # Entidades JPA
